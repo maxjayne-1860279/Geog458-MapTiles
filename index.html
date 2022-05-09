@@ -20,6 +20,19 @@
             width: 100%;
         }
 
+        #intro {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+            margin-left: 10px;
+            height: 120px;
+            width: 240px;
+            font-family: Arial;
+            color: black;
+        }
+
         /* the style of the layer control menu */
         #menu {
             background: #fff;
@@ -72,6 +85,10 @@
 <body>
     <nav id="menu"></nav>
     <div id='map'></div>
+    <div id="intro">
+        <h1>Geography 458 - Lab 04: Map Tile Generation</h1>
+        <p>This webmap displays four maps (a basemap, a Seattle affordable housing zones overlay, a combined map of the previous two, and a custom base map for road analysis)<br>These maps are rendered using raster map tiles for efficiency</p>
+    </div>
     <script type="text/javascript">
         mapboxgl.accessToken =
             'pk.eyJ1IjoiamFrb2J6aGFvIiwiYSI6ImNpcms2YWsyMzAwMmtmbG5icTFxZ3ZkdncifQ.P9MBej1xacybKcDN_jehvw';
@@ -158,6 +175,8 @@
 
         });
 
+        map.addControl(new mapboxgl.ScaleControl({position: 'bottom-right'}));
+        map.addControl(new CompassControl());
 
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
